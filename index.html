@@ -1,22 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    </script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite + React</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+		<script>
+			// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+
+			window.watsonAssistantChatOptions = {
+				integrationID: "1c057d68-52a5-4e4c-a14c-3095da7efc33", // The ID of this integration.
+				region: "au-syd", // The region your integration is hosted in.
+				serviceInstanceID: "abc1cd72-8098-46a2-bd95-813c6104136d", // The ID of your service instance.
+				onLoad: async (instance) => {
+					await instance.render();
+				},
+			};
+			setTimeout(function () {
+				const t = document.createElement("script");
+				t.src =
+					"https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+					(window.watsonAssistantChatOptions.clientVersion || "latest") +
+					"/WatsonAssistantChatEntry.js";
+				document.head.appendChild(t);
+			});
+
+			if (
+				localStorage.theme === "dark" ||
+				(!("theme" in localStorage) &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		</script>
+	</body>
 </html>

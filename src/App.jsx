@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Common/Navbar";
-import Footer from "./components/Common/Footer";
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
 
 import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -21,46 +21,46 @@ import ProfilePage from "./components/Profile/ProfilePage";
 import FAQ from "./components/Home/FAQ";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000);
-  }, []);
+	useEffect(() => {
+		setTimeout(() => setIsLoading(false), 2000);
+	}, []);
 
-  return (
-    <div className="min-h-screen bg-fixed">
-      <div className="fixed inset-0 bg-gray-50 dark:bg-gray-900" />
+	return (
+		<div className="min-h-screen bg-fixed">
+			<div className="fixed inset-0 bg-gray-50 dark:bg-gray-900" />
 
-      {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <div className="relative flex min-h-screen flex-col">
-          <ErrorBoundary>
-            <ScrollProgress />
-            <Navbar />
-            <main className="flex-1 pt-16">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/tasks" element={<TaskManagement />} />
-                <Route path="/meetings" element={<MeetingManagement />} />
-                <Route path="/development" element={<PersonalDevelopment />} />
-                <Route path="/analytics" element={<AnalyticsPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/faq" element={<FAQ />} />
+			{isLoading ? (
+				<LoadingScreen />
+			) : (
+				<div className="relative flex min-h-screen flex-col">
+					<ErrorBoundary>
+						<ScrollProgress />
+						<Navbar />
+						<main className="flex-1 pt-16">
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/dashboard" element={<Dashboard />} />
+								<Route path="/about" element={<AboutPage />} />
+								<Route path="/tasks" element={<TaskManagement />} />
+								<Route path="/meetings" element={<MeetingManagement />} />
+								<Route path="/development" element={<PersonalDevelopment />} />
+								<Route path="/analytics" element={<AnalyticsPage />} />
+								<Route path="/settings" element={<SettingsPage />} />
+								<Route path="/profile" element={<ProfilePage />} />
+								<Route path="/faq" element={<FAQ />} />
 
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-            <Footer />
-            <BackToTop />
-          </ErrorBoundary>
-        </div>
-      )}
-    </div>
-  );
+								<Route path="*" element={<Navigate to="/" replace />} />
+							</Routes>
+						</main>
+						<Footer />
+						<BackToTop />
+					</ErrorBoundary>
+				</div>
+			)}
+		</div>
+	);
 }
 
 export default App;
